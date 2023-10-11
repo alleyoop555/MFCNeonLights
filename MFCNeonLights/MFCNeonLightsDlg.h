@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "ColorStaticCtrl.h"
 
 // CMFCNeonLightsDlg dialog
 class CMFCNeonLightsDlg : public CDialogEx
@@ -31,4 +32,10 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+public:
+	CButton buttonOk;
+	CString staticText1;
+	afx_msg void OnBnClickedOk();
+	afx_msg void OnClickedStart();
+	ColorStaticCtrl m_staticDraw;
 };

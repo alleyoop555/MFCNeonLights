@@ -52,6 +52,7 @@ END_MESSAGE_MAP()
 
 CMFCNeonLightsDlg::CMFCNeonLightsDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_MFCNEONLIGHTS_DIALOG, pParent)
+	, staticText1(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -59,12 +60,17 @@ CMFCNeonLightsDlg::CMFCNeonLightsDlg(CWnd* pParent /*=nullptr*/)
 void CMFCNeonLightsDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDOK, buttonOk);
+	DDX_Text(pDX, IDC_STATIC1, staticText1);
+	DDX_Control(pDX, IDC_STATIC_DRAW, m_staticDraw);
 }
 
 BEGIN_MESSAGE_MAP(CMFCNeonLightsDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDOK, &CMFCNeonLightsDlg::OnBnClickedOk)
+	ON_BN_CLICKED(IDC_START, &CMFCNeonLightsDlg::OnClickedStart)
 END_MESSAGE_MAP()
 
 
@@ -153,3 +159,25 @@ HCURSOR CMFCNeonLightsDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CMFCNeonLightsDlg::OnBnClickedOk()
+{
+	// TODO: Add your control notification handler code here
+	// CDialogEx::OnOK();
+	CString byeString;
+	byeString = "BYE!!!";
+	SetDlgItemText(IDC_STATIC1, byeString);
+}
+
+
+void CMFCNeonLightsDlg::OnClickedStart()
+{
+	// TODO: Add your control notification handler code here
+	AfxMessageBox(L"START");
+	m_staticDraw.red = 255;
+	m_staticDraw.green = 0;
+	m_staticDraw.blue = 0;
+
+	m_staticDraw.reDraw();
+}
